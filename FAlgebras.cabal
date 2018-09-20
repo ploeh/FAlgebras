@@ -16,6 +16,7 @@ library
   hs-source-dirs:      src
   exposed-modules:     Fix
                      , Boolean
+                     , Nat
   build-depends:       base >= 4.7 && < 5
   ghc-options:         -Wall
   default-language:    Haskell2010
@@ -25,6 +26,7 @@ test-suite FAlgebras-test
   hs-source-dirs:      test
   main-is:             Spec.hs
   other-modules:       BooleanTests
+                     , NatTests
   build-depends:       base
                      , FAlgebras
                      , test-framework
