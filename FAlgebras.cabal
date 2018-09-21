@@ -15,8 +15,9 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
   exposed-modules:     Fix
-                     , Boolean
                      , Nat
+                     , Boolean
+                     , Maybe
   build-depends:       base >= 4.7 && < 5
   ghc-options:         -Wall
   default-language:    Haskell2010
@@ -27,6 +28,7 @@ test-suite FAlgebras-test
   main-is:             Spec.hs
   other-modules:       BooleanTests
                      , NatTests
+                     , MaybeTests
   build-depends:       base
                      , FAlgebras
                      , test-framework
