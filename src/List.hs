@@ -40,6 +40,25 @@ instance Read a => Read1 (ListF a) where
 newtype ListFix a =
   ListFix { unListFix :: Fix (ListF a) } deriving (Show, Eq, Read)
 
+instance Eq1 ListFix where
+  liftEq p (ListFix xs) (ListFix ys) = eqImp xs ys
+    where eqImp = eqFixF (liftEq2 p eqImp)
+
+instance Show1 ListFix where
+  liftShowsPrec sp sl d (ListFix l) = showsUnaryWith showFixListF "ListFix" d l
+    where
+      showFixListF =
+        showFixF (liftShowsPrec2 sp sl showFixListF showListFixListF)
+      showListFixListF = undefined -- Hack: Seems to be not required
+
+instance Read1 ListFix where
+  liftReadPrec rp rl =
+    readData (readUnaryWith (readFixF readListFFixListF) "ListFix" ListFix)
+    where
+      readListFFixListF =
+        liftReadPrec2 rp rl (readFixF readListFFixListF) readListFixListF
+      readListFixListF = undefined -- Hack: Seems to be not required
+
 nilF :: ListFix a
 nilF = ListFix $ Fix NilF
 
