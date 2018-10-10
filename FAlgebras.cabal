@@ -22,6 +22,7 @@ library
                      , Either
                      , Tree
                      , RoseTree
+                     , FullBinaryTree
   build-depends:       base >= 4.7 && < 5
                      , containers
   ghc-options:         -Wall
@@ -38,6 +39,7 @@ test-suite FAlgebras-test
                      , EitherTests
                      , TreeTests
                      , RoseTreeTests
+                     , FullBinaryTreeTests
   build-depends:       base
                      , containers
                      , FAlgebras
