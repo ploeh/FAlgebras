@@ -23,8 +23,10 @@ library
                      , Tree
                      , RoseTree
                      , FullBinaryTree
+                     , Payment
   build-depends:       base >= 4.7 && < 5
                      , containers
+                     , aeson
   ghc-options:         -Wall
   default-language:    Haskell2010
 
@@ -40,6 +42,7 @@ test-suite FAlgebras-test
                      , TreeTests
                      , RoseTreeTests
                      , FullBinaryTreeTests
+                     , PaymentTests
   build-depends:       base
                      , containers
                      , FAlgebras
