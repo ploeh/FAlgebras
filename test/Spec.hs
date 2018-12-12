@@ -7,6 +7,7 @@ import MaybeTests (maybeTests)
 import ListTests (listTests)
 import EitherTests (eitherTests)
 import TreeTests (treeTests)
+import RoseTreeTests (roseTreeTests)
 
 main :: IO ()
 main =
@@ -16,4 +17,5 @@ main =
     maybeTests ++
     listTests ++
     eitherTests ++
-    treeTests)
+    treeTests ++
+    roseTreeTests)

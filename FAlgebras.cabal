@@ -21,6 +21,7 @@ library
                      , List
                      , Either
                      , Tree
+                     , RoseTree
   build-depends:       base >= 4.7 && < 5
                      , containers
   ghc-options:         -Wall
@@ -36,6 +37,7 @@ test-suite FAlgebras-test
                      , ListTests
                      , EitherTests
                      , TreeTests
+                     , RoseTreeTests
   build-depends:       base
                      , containers
                      , FAlgebras
