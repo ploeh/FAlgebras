@@ -6,7 +6,7 @@ homepage:            https://github.com/githubuser/FAlgebras#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Mark Seemann
-copyright:           2018 Author Mark Seemann
+copyright:           2018 Mark Seemann
 category:            Web
 build-type:          Simple
 extra-source-files:  README.md
@@ -35,4 +35,4 @@ test-suite FAlgebras-test
 
 source-repository head
   type:     git
-  location: https://github.com/githubuser/FAlgebras
+  location: https://github.com/ploeh/FAlgebras
