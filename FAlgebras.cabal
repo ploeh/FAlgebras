@@ -20,7 +20,11 @@ library
                      , Maybe
                      , List
                      , Either
+                     , Tree
+                     , RoseTree
+                     , FullBinaryTree
   build-depends:       base >= 4.7 && < 5
+                     , containers
   ghc-options:         -Wall
   default-language:    Haskell2010
 
@@ -33,7 +37,11 @@ test-suite FAlgebras-test
                      , MaybeTests
                      , ListTests
                      , EitherTests
+                     , TreeTests
+                     , RoseTreeTests
+                     , FullBinaryTreeTests
   build-depends:       base
+                     , containers
                      , FAlgebras
                      , test-framework
                      , test-framework-quickcheck2

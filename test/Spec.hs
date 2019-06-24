@@ -6,6 +6,9 @@ import NatTests (natTests)
 import MaybeTests (maybeTests)
 import ListTests (listTests)
 import EitherTests (eitherTests)
+import TreeTests (treeTests)
+import RoseTreeTests (roseTreeTests)
+import FullBinaryTreeTests (fullBinaryTreeTests)
 
 main :: IO ()
 main =
@@ -14,4 +17,7 @@ main =
     natTests ++
     maybeTests ++
     listTests ++
-    eitherTests)
+    eitherTests ++
+    treeTests ++
+    roseTreeTests ++
+    fullBinaryTreeTests)
