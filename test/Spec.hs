@@ -9,6 +9,7 @@ import EitherTests (eitherTests)
 import TreeTests (treeTests)
 import RoseTreeTests (roseTreeTests)
 import FullBinaryTreeTests (fullBinaryTreeTests)
+import PaymentTests (paymentTests)
 
 main :: IO ()
 main =
@@ -20,4 +21,5 @@ main =
     eitherTests ++
     treeTests ++
     roseTreeTests ++
-    fullBinaryTreeTests)
+    fullBinaryTreeTests ++
+    paymentTests)
