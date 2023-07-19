@@ -15,14 +15,6 @@ import Test.QuickCheck
 import Tree
 import List
 
-instance Arbitrary a => Arbitrary (T.Tree a) where
-  arbitrary = sized genTree
-    where
-      genLeaf = fmap (\x -> T.Node x []) arbitrary
-      genSubtree n = liftM2 T.Node arbitrary $ listOf $ genTree $ n `div` 2
-      genTree 0 = genLeaf
-      genTree n = oneof [genLeaf, genSubtree n]
-
 {-# ANN module "HLint: ignore Use hierarchical imports" #-}
 {-# ANN module "HLint: ignore Functor law" #-}
 {-# ANN module "HLint: ignore Use <$>" #-}
