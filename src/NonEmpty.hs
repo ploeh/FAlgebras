@@ -7,7 +7,6 @@ import Fix
 import List
 import Prelude hiding (head, tail)
 import Control.Applicative (liftA2)
-import Control.Monad (liftM2)
 
 {-# ANN module "HLint: ignore Use hierarchical imports" #-}
 
@@ -60,15 +59,22 @@ instance Functor NonEmptyFix where
 
 instance Applicative NonEmptyFix where
   pure x = createNonEmptyF x nilF
-  liftA2 = liftM2
+  liftA2 f xs ys =
+    nonEmptyF
+      (\x xs' ->
+        nonEmptyF
+          (\y ys' ->
+            createNonEmptyF
+              (f x y)
+              (liftA2 f (consF x nilF) ys' <> liftA2 f xs' (consF y ys')))
+          ys)
+      xs
 
 instance Monad NonEmptyFix where
   xs >>= f =
     nonEmptyF (\x xs' ->
       nonEmptyF
-        (\y ys -> createNonEmptyF y $ ys <> (xs' >>= toListFix . f)) $
-        f x)
-      xs
+        (\y ys -> createNonEmptyF y $ ys <> (xs' >>= toListFix . f)) (f x)) xs
 
 toNonEmpty :: NonEmptyFix a -> NonEmpty a
 toNonEmpty = nonEmptyF (\x xs -> x :| toList xs)
