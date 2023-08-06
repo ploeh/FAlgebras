@@ -19,6 +19,7 @@ library
                      , Boolean
                      , Maybe
                      , List
+                     , NonEmpty
                      , Either
                      , Tree
                      , RoseTree
@@ -38,6 +39,7 @@ test-suite FAlgebras-test
                      , NatTests
                      , MaybeTests
                      , ListTests
+                     , NonEmptyTests
                      , EitherTests
                      , TreeTests
                      , RoseTreeTests

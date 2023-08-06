@@ -5,6 +5,7 @@ import BooleanTests (booleanTests)
 import NatTests (natTests)
 import MaybeTests (maybeTests)
 import ListTests (listTests)
+import NonEmptyTests (nonEmptyTests)
 import EitherTests (eitherTests)
 import TreeTests (treeTests)
 import RoseTreeTests (roseTreeTests)
@@ -18,6 +19,7 @@ main =
     natTests ++
     maybeTests ++
     listTests ++
+    nonEmptyTests ++
     eitherTests ++
     treeTests ++
     roseTreeTests ++
