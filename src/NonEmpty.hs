@@ -8,8 +8,6 @@ import List
 import Prelude hiding (head, tail)
 import Control.Applicative (liftA2)
 
-{-# ANN module "HLint: ignore Use hierarchical imports" #-}
-
 data NonEmptyF a c = NonEmptyF { head :: a, tail :: ListFix a }
                      deriving (Eq, Show, Read)
 
