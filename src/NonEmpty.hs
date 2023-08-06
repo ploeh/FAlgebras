@@ -79,6 +79,9 @@ instance Monad NonEmptyFix where
 instance Foldable NonEmptyFix where
   foldr f seed = nonEmptyF (\x xs -> f x $ foldr f seed xs)
 
+instance Traversable NonEmptyFix where
+  traverse f = nonEmptyF (\x xs -> liftA2 createNonEmptyF (f x) (traverse f xs))
+
 toNonEmpty :: NonEmptyFix a -> NonEmpty a
 toNonEmpty = nonEmptyF (\x xs -> x :| toList xs)
 

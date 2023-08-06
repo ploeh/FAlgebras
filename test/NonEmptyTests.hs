@@ -2,6 +2,8 @@
 module NonEmptyTests where
 
 import Data.Word (Word8)
+import Data.Functor.Identity
+import Data.Functor.Compose
 import Data.List.NonEmpty (NonEmpty(..), append)
 import Data.Foldable (fold)
 import Test.Framework (testGroup)
@@ -141,6 +143,31 @@ nonEmptyTests =
 
         let left = foldMap f m
         let right = (fold . fmap f) m
+
+        return $ left === right
+      ,
+      testProperty "Traversable naturality law" $ do
+        l :: NonEmptyFix (String, Integer) <- fromNonEmpty <$> arbitrary
+        let t = (: []) . snd -- Just an example of f a -> g a
+
+        let left = (t . sequenceA) l
+        let right = (sequenceA . fmap t) l
+
+        return $ left === right
+      ,
+      testProperty "Traversable identity law" $ do
+        l :: NonEmptyFix Integer <- fromNonEmpty <$> arbitrary
+
+        let left = (sequenceA . fmap Identity) l
+        let right = Identity l
+
+        return $ left === right
+      ,
+      testProperty "Traversable composition law" $ do
+        l :: NonEmptyFix (Maybe (String, Integer)) <- fromNonEmpty <$> arbitrary
+
+        let left = (sequenceA . fmap Compose) l
+        let right = (Compose . fmap sequenceA . sequenceA) l
 
         return $ left === right
     ]
