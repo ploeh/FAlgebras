@@ -76,6 +76,9 @@ instance Monad NonEmptyFix where
       nonEmptyF
         (\y ys -> createNonEmptyF y $ ys <> (xs' >>= toListFix . f)) (f x)) xs
 
+instance Foldable NonEmptyFix where
+  foldr f seed = nonEmptyF (\x xs -> f x $ foldr f seed xs)
+
 toNonEmpty :: NonEmptyFix a -> NonEmpty a
 toNonEmpty = nonEmptyF (\x xs -> x :| toList xs)
 

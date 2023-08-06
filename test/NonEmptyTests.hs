@@ -3,6 +3,7 @@ module NonEmptyTests where
 
 import Data.Word (Word8)
 import Data.List.NonEmpty (NonEmpty(..), append)
+import Data.Foldable (fold)
 import Test.Framework (testGroup)
 import Test.Framework.Providers.QuickCheck2 (testProperty)
 import Test.QuickCheck
@@ -131,6 +132,15 @@ nonEmptyTests =
 
         let left = m >>= (\x -> k x >>= h)
         let right = (m >>= k) >>= h
+
+        return $ left === right
+      ,
+      testProperty "Foldable relates to Functor" $ do
+        m :: NonEmptyFix Integer <- fromNonEmpty <$> arbitrary
+        f :: Integer -> String <- arbitrary
+
+        let left = foldMap f m
+        let right = (fold . fmap f) m
 
         return $ left === right
     ]
